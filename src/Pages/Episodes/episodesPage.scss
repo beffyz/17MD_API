@@ -1,0 +1,29 @@
+.episode-search__box {
+  margin-top: 30px;
+}
+
+.episode-search__input {
+  max-width: 300px;
+  width: 100%;
+  margin-right: 5px;
+}
+
+.episode-card {
+  display: flex;
+  border: 1px solid black;
+  max-width: 500px;
+  width: 100%;
+  margin-top: 30px;
+  margin-left: 30%;
+}
+
+.episode-card__image {
+  max-width: 150px;
+  width: 100%;
+  height: 100%;
+}
+
+.episode-card__details {
+  margin-top: 5px;
+  margin-left: 10px;
+}

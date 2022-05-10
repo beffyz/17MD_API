@@ -13,6 +13,7 @@ import EpisodesPage from './Pages/Episodes/EpisodesPage';
 import LocationsPage from './Pages/Locations/LocationsPage';
 import Error404Page from './Pages/404/Error404Page';
 import Header from './components/Header/Header';
+import CharacterPage from './Pages/Character/CharacterPage';
 
 const App = () => (
   <Router>
@@ -20,6 +21,7 @@ const App = () => (
 
     <Routes>
       <Route path="/" element={<CharactersPage />} />
+      <Route path="/characters/:id" element={<CharacterPage />} />
       <Route path="/episodes" element={<EpisodesPage />} />
       <Route path="/locations" element={<LocationsPage />} />
       <Route path="/404" element={<Error404Page />} />

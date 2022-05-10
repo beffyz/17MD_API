@@ -5,20 +5,62 @@ import { CharacterResults } from '../../components/Models/CharacterModel';
 import './charactersPage.scss';
 
 const CharactersPage = () => {
-  const [characters, setCharacters] = useState<[...CharacterResults]>();
+  const [characters, setCharacters] = useState<CharacterResults[]>();
   const [errorMessage, setErrorMessage] = useState<string>();
 
   const navigate = useNavigate();
+
+  const getAliveCharacters = async () => {
+    try {
+      const response = await axios.get('https://rickandmortyapi.com/api/character/?status=alive');
+      setCharacters(response.data.results);
+    } catch (error) {
+      navigate('/');
+    } finally {
+      console.log('end');
+    }
+  };
+
+  useEffect(() => {
+    getAliveCharacters().then();
+  }, []);
+
+  const getDeadCharacters = async () => {
+    try {
+      const response = await axios.get('https://rickandmortyapi.com/api/character/?status=dead');
+      setCharacters(response.data.results);
+    } catch (error) {
+      navigate('/');
+    } finally {
+      console.log('end');
+    }
+  };
+
+  useEffect(() => {
+    getDeadCharacters().then();
+  }, []);
+
+  const getUnknownCharacters = async () => {
+    try {
+      const response = await axios.get('https://rickandmortyapi.com/api/character/?status=unknown');
+      setCharacters(response.data.results);
+    } catch (error) {
+      navigate('/');
+    } finally {
+      console.log('end');
+    }
+  };
+
+  useEffect(() => {
+    getUnknownCharacters().then();
+  }, []);
 
   const getCharacters = async () => {
     try {
       const response = await axios.get('https://rickandmortyapi.com/api/character');
       setCharacters(response.data.results);
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        const message = error.response?.status === 404 ? 'Nothing to show' : error.message;
-        setErrorMessage(message);
-      }
+      navigate('/');
     } finally {
       console.log('end');
     }
@@ -31,10 +73,10 @@ const CharactersPage = () => {
   return (
     <div className="container">
       <div className="sort center-md">
-        <button className="sort__button">All</button>
-        <button className="sort__button sort__button--alive">Alive</button>
-        <button className="sort__button sort__button--dead">Dead</button>
-        <button className="sort__button sort__button--unknown">Unknown</button>
+        <button onClick={getCharacters} className="sort__button">All</button>
+        <button onClick={getAliveCharacters} className="sort__button sort__button--alive">Alive</button>
+        <button onClick={getDeadCharacters} className="sort__button sort__button--dead">Dead</button>
+        <button onClick={getUnknownCharacters} className="sort__button sort__button--unknown">Unknown</button>
       </div>
       <div className="characters center-md">
         {characters && characters.map(({

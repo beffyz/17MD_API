@@ -10,7 +10,7 @@ export type CharacterInfo = {
   prev: null;
 }
 
-export type CharacterResults = [
+export type CharacterResults =
   {
     id: number;
     name: string;
@@ -24,7 +24,6 @@ export type CharacterResults = [
     episode: CharacterEpisode;
     url: string;
   }
-]
 
 export type CharacterOrigin = {
   name: string;
@@ -37,3 +36,14 @@ export type CharacterLocation = {
 }
 
 export type CharacterEpisode = string[]
+
+export type Episodes = {
+  id: number,
+  name: string,
+  // eslint-disable-next-line camelcase
+  air_date: string,
+  episode: string,
+  characters: string[],
+  url: string,
+  created: string,
+}
